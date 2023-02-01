@@ -1,37 +1,33 @@
 //Modules used: express, express-myconnection, mysql
 
-
 const express = require('express');
 const mysql = require('mysql');
 const myconn = require('express-myconnection');
-const routes = require('./routes')
+const routes = require('./routes');
+const cors = require('cors');
 
 //init -------
 const app = express();
-app.set('port', process.env.PORT || 9000)
+app.set('port', process.env.PORT || 9000);
 const dbOptions = {
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: 'adivina',
-    database: 'library'
-
-}
-
+  host: 'localhost',
+  port: 3306,
+  user: 'root',
+  password: 'adivina',
+  database: 'library',
+};
 
 //middlewares ---------
-app.use(myconn(mysql, dbOptions, 'single'))
-app.use(express.json())
+app.use(myconn(mysql, dbOptions, 'single'));
+app.use(express.json());
+app.use(cors());
 
 // routes --------
 app.get('/', (req, res) => {
-    res.send('Welcome to my API')
-})
+  res.send('Welcome to my API');
+});
 
-app.use('/api', routes)
-
-
-
+app.use('/api', routes);
 
 //server running ------------------
 app.listen(app.get('port'), () => {

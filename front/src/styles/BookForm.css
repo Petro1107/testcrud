@@ -1,0 +1,33 @@
+.formContainer{
+    border: solid green 3px;
+    width: 50%;
+}
+
+.formHeader {
+    text-align: center;
+}
+
+form {
+    border: solid black 3px;
+    justify-content: center;
+    align-items: center;
+}
+
+.dataInput {
+    margin: 5px 10px
+}
+
+label {
+    margin-left: auto;
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+input {
+    width: 90%;
+}
+
+button {
+    margin: 10px 10px;
+}
