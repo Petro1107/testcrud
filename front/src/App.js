@@ -17,25 +17,46 @@ function App() {
     edicion: 0,
   });
   const [books, setBooks] = useState([]);
+  // const [booksLength, setBooksLength] = useState(0);
 
-  useEffect(() => {
+  const getBooks = () => {
     fetch('http://localhost:9000/api')
       .then((res) => res.json())
       .then((res) => setBooks(res));
+  };
+
+  const [listUpdated, setListUpdated] = useState(false);
+
+  useEffect(() => {
+    getBooks();
+
+    setListUpdated(false);
+
+    // setBooksLength(books.length);
 
     //Anteriormente esto estaba dentro de la funcion getBooks, la cual
     //eliminé porque se está generando un loop infinito de peticiones.
     //Tengo que tratar de arreglarlo.
-    // getBooks();
-  }, []);
+
+    // console.log(books);
+  }, [listUpdated]);
 
   return (
     <>
       <Navbar />
 
       <div className='pageContent'>
-        <BookList books={books} />
-        <BookForm newBook={newBook} setNewBook={setNewBook} />
+        <BookList
+          books={books}
+          setListUpdated={setListUpdated}
+          newBook={newBook}
+          setNewBook={setNewBook}
+        />
+        <BookForm
+          newBook={newBook}
+          setNewBook={setNewBook}
+          setListUpdated={setListUpdated}
+        />
       </div>
     </>
   );

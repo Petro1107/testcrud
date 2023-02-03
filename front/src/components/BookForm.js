@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../styles/BookForm.css';
 
-const BookForm = ({ newBook, setNewBook }) => {
+const BookForm = ({ newBook, setNewBook, setListUpdated }) => {
   const handleChange = (e) => {
     setNewBook({
       ...newBook,
@@ -39,6 +39,8 @@ const BookForm = ({ newBook, setNewBook }) => {
       Autor: '',
       edicion: 0,
     });
+
+    setListUpdated(true);
   };
 
   return (
@@ -49,6 +51,7 @@ const BookForm = ({ newBook, setNewBook }) => {
           <div className='dataInput'>
             <label htmlFor='title'>Title</label>
             <input
+              value={title}
               name='title'
               onChange={handleChange}
               type='text'
@@ -59,6 +62,7 @@ const BookForm = ({ newBook, setNewBook }) => {
           <div className='dataInput'>
             <label htmlFor='autor'>Author</label>
             <input
+              value={Autor}
               name='Autor'
               onChange={handleChange}
               type='text'
@@ -69,6 +73,7 @@ const BookForm = ({ newBook, setNewBook }) => {
           <div className='dataInput'>
             <label htmlFor='edicion'>Edition</label>
             <input
+              value={edicion}
               name='edicion'
               onChange={handleChange}
               type='number'
